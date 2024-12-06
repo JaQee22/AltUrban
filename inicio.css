@@ -1,0 +1,68 @@
+*
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'raleway', sans-serif;
+}
+
+.hero{
+    background-image: linear-gradient(to top, rgba(248, 219, 240, 0.626) 0%, rgba(255, 255, 255, 0.747) 100%),url("imagenes/Au..jpg");
+    background-attachment:fixed;
+    position: relative;
+    overflow: scroll;
+}
+/* Contenedor principal */
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #8533529a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: center;
+    
+}
+/* Estilos del formulario */
+.form-container h2 {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.form-container form li {
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-container label {
+    font-size: 20px;
+}
+
+.form-container input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-container button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #d4225d;
+    color: white;
+    border:gainsboro;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-image: linear-gradient(45deg, #e92c32 0%, #f4d7ce 99%, #fad0c4 100%);
+    border-radius: 8px;
+    color: #fff;
+    transform: scale(1);
+    transition: transform 0.8s;
+}

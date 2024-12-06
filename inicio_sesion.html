@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="inicio.css">
+</head>
+<body class="hero">
+    <div class="container">
+        
+        <div class="form-container">
+            <h2>Lista De Reclamos</h2>
+            <form>
+                <form>
+                    <label for="reclamos">RECLAMOS</label>
+                    <ol>
+                        <li>
+                            <!-- Numero de Reclamo -->
+                            <label for="numero_reclamo">Numero de Reclamo:</label>
+                            <input type="text" id="numero_reclamo" name="numero_reclamo" placeholder="Ingresar Numero de Reclamo" required>
+                            
+                            <!-- Nombre -->
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre" placeholder="Ingresar Nombre" required>
+                            
+                            <!-- RUT -->
+                            <label for="rut">RUT:</label>
+                            <input type="text" id="rut" name="rut" placeholder="Ingresar Rut" required 
+                                pattern="^\d{1,8}-[0-9Kk]{1}$" title="El formato del RUT debe ser 12345678-9 o 12345678-K"
+                                inputmode="numeric" maxlength="10">
+                            
+                            <!-- Email -->
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-group" id="email" name="email" placeholder="Ingrese Email" size="30" required>
+                            
+                            <!-- Descripcion -->
+                            <label for="descripcion">Descripcion Problema:</label>
+                            <input type="text" id="descripcion" name="descripcion" placeholder="Ingresar descripcion del problema" required>
+                            
+                            <!-- Evidencia -->
+                            <label for="evidencia">Evidencia:</label>
+                            <input type="file" id="evidencia" class="input-field" required>
+                            
+                            <!-- Ubicacion -->
+                            <label for="ubicacion">Ubicacion:</label>
+                            <input type="text" id="ubicacion" name="ubicacion" placeholder="Ingresar Ubicacion" required>
+                
+                            <!-- Fecha de Reporte -->
+                            <label for="fecha_reporte">Fecha de Reporte:</label>
+                            <input type="date" id="fecha_reporte" name="fecha_reporte" required>
+                
+                            <!-- Opciones de Aprobar/Rechazar -->
+                            <label for="estado_reclamo">Estado del Reclamo:</label>
+                            <select id="estado_reclamo" name="estado_reclamo">
+                                <option value="ver">Ver</option>
+                                <option value="aprobar">Aprobar</option>
+                                <option value="rechazar">Rechazar</option>
+                            </select>
+                        </li>
+                    </ol>
+                
+                    <!-- Botón para enviar el reclamo -->
+                    <button type="submit">Enviar Reclamo</button>
+                </form>
+                
+               
+                
+                <script>
+                    // Funciones para acciones de los botones (Ejemplo)
+                    function verReporte(numero) {
+                        alert('Ver reporte ' + numero);
+                    }
+                
+                    function aprobarReclamo(numero) {
+                        alert('Reclamo ' + numero + ' aprobado.');
+                    }
+                
+                    function rechazarReclamo(numero) {
+                        alert('Reclamo ' + numero + ' rechazado.');
+                    }
+                </script>
+                
+                
+            </form>
+            
+        </div>
+
+    </div>
+    
+</body>
+</html>

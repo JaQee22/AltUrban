@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <title>Pantalla de Reclamo</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body class="hero">
+    
+    
+        
+    <div class="container">
+        <div class="login-button">
+            
+
+    <!-- Aquí iría el código del formulario de inicio de sesión (oculto inicialmente) -->
+    <div id="loginModal" style="display:none;">
+        
+        <div style="position:fixed; transform: translate(-50%, -50%); background-color: #8533529a; padding: 20px; border-radius: 10px;">
+            <h2 id="modalTitle">Iniciar Sesión</h2>
+            
+            <!-- Formulario para iniciar sesión -->
+            <form id="loginForm">
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" name="username"><br><br>
+    
+                <label for="password">Rut:</label>
+                <input type="password" id="password" name="password"><br><br>
+    
+                <button type="submit">Iniciar sesión</button>
+            </form>
+    
+            <!-- Formulario para crear un nuevo usuario (oculto por defecto) -->
+            <form id="createAccountForm" style="display:none;">
+                <label for="newUsername">Nuevo Usuario:</label>
+                <input type="text" id="newUsername" name="newUsername"><br><br>
+    
+                <label for="newPassword">Nuevo Rut:</label>
+                <input type="password" id="newPassword" name="newPassword"><br><br>
+    
+                <button type="submit">Crear cuenta</button>
+            </form>
+    
+            <!-- Enlaces para alternar entre iniciar sesión y crear cuenta -->
+            <p id="toggleText" style="cursor: pointer; color: #000000; text-decoration: underline;">¿No tienes cuenta? Crea una nueva cuenta.</p>
+            
+            <!-- Botón para cerrar el modal -->
+            <button id="closeModal">Cerrar</button>
+        </div>
+    </div>
+    
+     <!-- Botón para abrir el modal -->
+     <button id="openModal">Iniciar sesión</button>
+    
+    <script>
+        // Función para abrir el modal
+        document.getElementById('openModal').addEventListener('click', function() {
+            document.getElementById('loginModal').style.display = 'block';
+            document.getElementById('modalTitle').textContent = "Iniciar Sesión"; // Título inicial
+            document.getElementById('loginForm').style.display = 'block'; // Mostrar formulario de inicio de sesión
+            document.getElementById('createAccountForm').style.display = 'none'; // Ocultar formulario de crear cuenta
+            document.getElementById('toggleText').textContent = "¿No tienes cuenta? Crea una nueva cuenta."; // Texto del enlace
+        });
+    
+        // Función para cerrar el modal
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('loginModal').style.display = 'none';
+        });
+    
+        // Alternar entre "Iniciar sesión" y "Crear cuenta"
+        document.getElementById('toggleText').addEventListener('click', function() {
+            const loginForm = document.getElementById('loginForm');
+            const createAccountForm = document.getElementById('createAccountForm');
+            const modalTitle = document.getElementById('modalTitle');
+            const toggleText = document.getElementById('toggleText');
+            
+            if (loginForm.style.display === 'none') {
+                // Mostrar inicio de sesión y ocultar crear cuenta
+                loginForm.style.display = 'block';
+                createAccountForm.style.display = 'none';
+                modalTitle.textContent = "Iniciar Sesión";
+                toggleText.textContent = "¿No tienes cuenta? Crea una nueva cuenta.";
+            } else {
+                // Mostrar crear cuenta y ocultar inicio de sesión
+                loginForm.style.display = 'none';
+                createAccountForm.style.display = 'block';
+                modalTitle.textContent = "Crear Cuenta";
+                toggleText.textContent = "¿Ya tienes cuenta? Inicia sesión.";
+            }
+        });
+    
+        // Evitar que el formulario recargue la página al hacer submit (para ambos formularios)
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Aquí puedes agregar lo que deseas hacer al enviar el formulario de inicio de sesión
+            alert('Formulario de inicio de sesión enviado');
+        });
+    
+        document.getElementById('createAccountForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Aquí puedes agregar lo que deseas hacer al enviar el formulario de crear cuenta
+            alert('Formulario de creación de cuenta enviado');
+        });
+    </script>
+    
+    
+</div>
+<div class="form-container">
+    <h2>Ingresar Información</h2>
+    <form id="formulario">
+        <!-- Fecha de Reporte -->
+        <label for="fecha_reporte">Fecha de Reporte:</label>
+        <input type="date" id="fecha_reporte" name="fecha_reporte" required>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ingresar Nombre" required>
+        
+        <label for="rut">RUT:</label>
+        <input type="text" id="rut" name="rut" placeholder="Ingresar Rut" required 
+            pattern="^\d{1,8}-[0-9Kk]{1}$" title="El formato del RUT debe ser 12345678-9 o 12345678-K"
+            inputmode="numeric" maxlength="10">
+        
+        <label for="email">Email:</label>
+        <input type="email" class="form-group" id="email" placeholder="Ingrese Email" size="30" required>
+        
+        <label for="descripcion">Descripcion Problema:</label>
+        <input type="text" id="descripcion" name="Descripcion" placeholder="Ingresar descripcion del problema" required>
+        
+        <form id="uploadForm" action="{% url 'upload_image' %}" method="POST" enctype="multipart/form-data">
+            <label for="evidencia">Evidencia:</label>
+            <input type="file" id="image" name="image" class="input-field" required>
+            <button type="submit">Subir</button>
+        </form>
+        
+        
+        <label for="Ubicacion">Ubicación:</label>
+<input type="text" id="Ubicacion" name="Ubicacion" placeholder="Ingresar Ubicación" required>
+<button type="button" onclick="obtenerUbicacion()">Obtener Ubicación</button>
+
+
+
+        
+        <button type="submit">Ingresar Reclamo</button>
+    </form>
+
+    <!-- Mostrar el código de registro generado -->
+    <div id="codigoRegistro" style="margin-top: 20px;"></div>
+</div>
+
+<script>
+    // Función para generar un código aleatorio de registro
+    function generarCodigo() {
+        const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let codigo = '';
+        for (let i = 0; i < 8; i++) {
+            const indice = Math.floor(Math.random() * caracteres.length);
+            codigo += caracteres[indice];
+        }
+        return codigo;
+    }
+
+    // Manejo del envío del formulario
+    document.getElementById('formulario').addEventListener('submit', function(event) {
+        event.preventDefault();  // Evitar el envío real del formulario
+        
+        // Generar el código aleatorio de registro
+        const codigo = generarCodigo();
+        
+        // Mostrar el código generado en el div
+        document.getElementById('codigoRegistro').innerHTML = `Código de Registro: ${codigo}`;
+        
+        // Aquí puedes agregar más lógica si deseas enviar los datos del formulario a un servidor
+        // Por ejemplo, usando fetch o XMLHttpRequest
+    });
+</script>
+
+<script>
+    function obtenerUbicacion() {
+        if (navigator.geolocation) {
+            // Obtiene la ubicación actual del usuario
+            navigator.geolocation.getCurrentPosition(function(position) {
+                // Extrae las coordenadas de latitud y longitud
+                var lat = position.coords.latitude;
+                var lon = position.coords.longitude;
+    
+                // Aquí podrías usar un servicio de geocodificación inversa si necesitas la dirección
+                // Por ejemplo, con la API de Google Maps para convertir las coordenadas en una dirección
+                var ubicacion = "Latitud: " + lat + ", Longitud: " + lon;
+    
+                // Asigna la ubicación al campo de texto
+                document.getElementById('Ubicacion').value = ubicacion;
+            }, function(error) {
+                alert("Error al obtener la ubicación: " + error.message);
+            });
+        } else {
+            alert("La geolocalización no es compatible con este navegador.");
+        }
+    }
+    </script>
+    </div>
+    
+    <section class="galeria">
+        <div class="contenedor">
+            <h2 class="titulo">Daños De Infraestructura</h2>
+            <article class="galeria-cont">
+                <img src="imagenes/bache1.jpg" alt="">
+                <img src="imagenes/bache2.jpg" alt="">
+                <img src="imagenes/cable 1.jpg" alt="">
+                <img src="imagenes/cable-caido.jpg" alt="">
+                <img src="imagenes/cable-caido2.jpg" alt="">
+                <img src="imagenes/cables2.jpg" alt="">
+                <img src="imagenes/paraderos.jpg" alt="">
+                <img src="imagenes/postes.jpg" alt="">
+                <img src="imagenes/rejas.jpg" alt="">
+            </article>
+        </div>    
+    </section>
+
+    <footer>
+        
+    <p>Nos puedes encontar en RRSS en:</p>
+    <a href="https://www.facebook.com"><img src=https://cdn.icon-icons.com/icons2/805/PNG/512/facebook_icon-icons.com_65926.png width="50"height="50"></a>
+    <a href="https://www.instagram.com"><img src=https://cdn.pixabay.com/photo/2021/06/15/12/17/instagram-6338401_1280.png width="50"height="50"></a>
+
+    
+
+    <script src="https://kit.fontawesome.com/642fd7705b.js" crossorigin="anonymous"></script>
+</footer>
+</body>
+</html>
